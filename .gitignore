@@ -1,0 +1,8 @@
+# Node modules
+node_modules/
+dist/
+.vite/
+.angular/
+.vue/
+.react/
+.DS_Store
