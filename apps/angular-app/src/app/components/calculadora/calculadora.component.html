@@ -1,0 +1,92 @@
+<div class="mb-4">
+  <div class="card container p-4">
+    <h2 class="mb-3">Calculadora de Arremate de Motos</h2>
+    <p class="text-muted">
+      Preencha os campos abaixo e clique em "Calcular" para obter o valor ideal de arremate.
+    </p>
+    <div class="row">
+      <div class="col">
+        <label for="marca" class="form-label">Marca da Moto:</label>
+        <select [(ngModel)]="marca" class="form-select">
+          <option value="comum">Honda, Yamaha, Suzuki, Dafra</option>
+          <option value="intermediaria">Royal Enfield, Kawasaki</option>
+          <option value="premium">BMW, Ducati, Triumph</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="anoFabricacao" class="form-label mt-2">Ano de Fabricação:</label>
+        <input type="number" [(ngModel)]="anoFabricacao" class="form-control" placeholder="Ex: 2020" required>
+      </div>
+      <div class="col">
+        <label for="anoModelo" class="form-label mt-2">Ano do Modelo:</label>
+        <input type="number" [(ngModel)]="anoModelo" class="form-control" placeholder="Ex: 2021" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="seguradora" class="form-label mt-2">Seguradora:</label>
+        <select [(ngModel)]="seguradora" class="form-select">
+          <option value="nenhuma">Outra</option>
+          <option value="hdi_ylm">HDI / YLM / INDIANA (R$ 50,00)</option>
+          <option value="allianz">ALLIANZ (R$ 80,00)</option>
+          <option value="porto">PORTO (R$ 500,00)</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="lote" class="form-label mt-2">Lote:</label>
+        <input type="text" [(ngModel)]="lote" class="form-control" placeholder="00/ABC" required>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col">
+        <label for="sinistro" class="form-label mt-2">Tipo de Sinistro:</label>
+        <select [(ngModel)]="sinistro" class="form-select">
+          <option value="pequena">Pequena Monta</option>
+          <option value="media">Média Monta</option>
+        </select>
+      </div>
+      <div class="col">
+        <label for="custos" class="form-label mt-2">Custos Estimados:</label>
+        <select [(ngModel)]="custosPercentual" class="form-select">
+          <option [value]="0.1">Bom estado</option>
+          <option [value]="0.2">Reparos moderados</option>
+          <option [value]="0.4">Reparos pesados</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label for="fipe" class="form-label mt-2">Valor FIPE (R$):</label>
+        <input type="text" [(ngModel)]="fipe" class="form-control" placeholder="Ex: 13.608,00" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <label for="seguro" class="form-label mt-2">Valor do Seguro (R$) - Opcional:</label>
+        <input type="text" [(ngModel)]="seguro" class="form-control" placeholder="Ex: 2.000,00">
+      </div>
+
+      <div class="col">
+        <label for="multas" class="form-label mt-2">Débitos/Multas Estimadas (R$) - Até 500,00:</label>
+        <input type="text" [(ngModel)]="multas" class="form-control" placeholder="Ex: 300,00">
+      </div>
+    </div>
+
+    <button class="btn btn-success mt-3" (click)="calcularValorArremate()">Calcular</button>
+
+    <div class="resultado mt-3" *ngIf="resultado">
+      <h3>Faixa ideal de arremate:</h3>
+      <ul class="list-group list-group-horizontal">
+        <li class="list-group-item w-100">Mínimo: <strong>{{ formatarReal(valorArremateMin) }}</strong></li>
+        <li class="list-group-item w-100">Máximo: <strong>{{ formatarReal(valorArremateMax) }}</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>

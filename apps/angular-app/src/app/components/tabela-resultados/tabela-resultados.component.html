@@ -1,0 +1,27 @@
+<div class="mt-2 p-2">
+  <table *ngIf="resultados.length; else noData" class="table table-bordered table-hover text-center">
+    <thead class="table-light">
+      <tr>
+        <th scope="col">Lote</th>
+        <th scope="col">Min</th>
+        <th scope="col">Máx</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resultado of resultados; let i = index">
+        <td class="align-middle">{{ resultado.lote }}</td>
+        <td class="align-middle">{{ resultado.minimo | number: '1.2-2' }}</td>
+        <td class="align-middle">{{ resultado.maximo | number: '1.2-2' }}</td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" (click)="removerResultado(i)"><i
+              class="bi bi-trash"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p class="text-muted text-center mt-3">Nenhum resultado disponível.</p>
+  </ng-template>
+</div>
