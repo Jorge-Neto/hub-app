@@ -84,8 +84,8 @@
     <div class="resultado mt-3" *ngIf="resultado">
       <h3>Faixa ideal de arremate:</h3>
       <ul class="list-group list-group-horizontal">
-        <li class="list-group-item w-100">Mínimo: <strong>{{ formatarReal(valorArremateMin) }}</strong></li>
-        <li class="list-group-item w-100">Máximo: <strong>{{ formatarReal(valorArremateMax) }}</strong></li>
+        <li class="list-group-item w-100">Mínimo: <strong>{{ valorArremateMin | formatReal }}</strong></li>
+        <li class="list-group-item w-100">Máximo: <strong>{{ valorArremateMax | formatReal }}</strong></li>
       </ul>
     </div>
   </div>

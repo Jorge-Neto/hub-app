@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { ResultadoService } from '../../services/resultado/resultado.service';
 import { CommonModule } from '@angular/common';
+import { ResultadoService } from '../../services/resultado.service';
+import { FormatRealPipe } from '../../pipes/format-real.pipe';
 
 @Component({
   selector: 'app-tabela-resultados',
-  imports: [CommonModule],
+  imports: [CommonModule, FormatRealPipe],
   templateUrl: './tabela-resultados.component.html',
   styleUrl: './tabela-resultados.component.scss'
 })

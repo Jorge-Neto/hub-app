@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ResultadoService } from '../../services/resultado/resultado.service';
-
+import { ResultadoService } from '../../services/resultado.service';
+import { FormatRealPipe } from '../../pipes/format-real.pipe';
 
 @Component({
   selector: 'app-calculadora',
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, FormatRealPipe],
   templateUrl: './calculadora.component.html',
   styleUrls: ['./calculadora.component.scss']
 })
@@ -23,7 +23,6 @@ export class CalculadoraComponent {
   fipe: number = 0;
   seguro: number = 0;
   multas: number = 0;
-
 
   valorArremateMin: number = 0;
   valorArremateMax: number = 0;
@@ -75,9 +74,5 @@ export class CalculadoraComponent {
 
     this.resultado = true;
     this.resultadoService.atualizarResultado({ lote: this.lote, minimo: this.valorArremateMin, maximo: this.valorArremateMax });
-  }
-
-  formatarReal(valor: number) {
-    return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
   }
 }

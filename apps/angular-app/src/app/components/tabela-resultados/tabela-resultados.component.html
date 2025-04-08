@@ -11,8 +11,8 @@
     <tbody>
       <tr *ngFor="let resultado of resultados; let i = index">
         <td class="align-middle">{{ resultado.lote }}</td>
-        <td class="align-middle">{{ resultado.minimo | number: '1.2-2' }}</td>
-        <td class="align-middle">{{ resultado.maximo | number: '1.2-2' }}</td>
+        <td class="align-middle">{{ resultado.minimo | formatReal }}</td>
+        <td class="align-middle">{{ resultado.maximo | formatReal }}</td>
         <td>
           <button type="button" class="btn btn-outline-danger" (click)="removerResultado(i)"><i
               class="bi bi-trash"></i></button>
