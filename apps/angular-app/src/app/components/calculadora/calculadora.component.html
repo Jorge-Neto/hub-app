@@ -52,7 +52,7 @@
         </select>
       </div>
       <div class="col">
-        <label for="custos" class="form-label mt-2">Custos Estimados:</label>
+        <label for="custos" class="form-label mt-2">Reparos Estimados:</label>
         <select [(ngModel)]="custosPercentual" class="form-select">
           <option [value]="0.1">Bom estado</option>
           <option [value]="0.2">Reparos moderados</option>
@@ -82,7 +82,7 @@
     <button class="btn btn-success mt-3" (click)="calcularValorArremate()">Calcular</button>
 
     <div class="resultado mt-3" *ngIf="resultado">
-      <h3>Faixa ideal de arremate:</h3>
+      <h3>Faixa ideal de arremate para lote {{ lote }}:</h3>
       <ul class="list-group list-group-horizontal">
         <li class="list-group-item w-100">Mínimo: <strong>{{ valorArremateMin | formatReal }}</strong></li>
         <li class="list-group-item w-100">Máximo: <strong>{{ valorArremateMax | formatReal }}</strong></li>

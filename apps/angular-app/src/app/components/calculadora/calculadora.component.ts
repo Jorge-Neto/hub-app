@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ResultadoService } from '../../services/resultado.service';
 import { FormatRealPipe } from '../../pipes/format-real.pipe';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-calculadora',
@@ -11,35 +12,35 @@ import { FormatRealPipe } from '../../pipes/format-real.pipe';
   styleUrls: ['./calculadora.component.scss']
 })
 export class CalculadoraComponent {
-  constructor(private resultadoService: ResultadoService) { }
+  constructor(private resultadoService: ResultadoService, private snackBar: MatSnackBar) { }
 
   marca: string = 'comum';
-  anoFabricacao: number = 0;
-  anoModelo: number = 0;
+  anoFabricacao: number | null = null;
+  anoModelo: number | null = null;
   seguradora: string = 'nenhuma';
-  lote: string = '';
+  lote: string | null = null;
   sinistro: string = 'pequena';
   custosPercentual: number = 0.1;
-  fipe: number = 0;
-  seguro: number = 0;
-  multas: number = 0;
+  fipe: number | null = null;
+  seguro: number | null = null;
+  multas: number | null = null;
 
   valorArremateMin: number = 0;
   valorArremateMax: number = 0;
   resultado: boolean = false;
 
   calcularValorArremate() {
+    if (!this.fipe || !this.anoFabricacao || !this.anoModelo || !this.lote) {
+      this.snackbar('Por favor, preencha todos os campos obrigatórios.');
+      return;
+    }
+
     this.fipe = Number(String(this.fipe).replace(/\./g, "").replace(",", "."));
     this.anoFabricacao = Number(this.anoFabricacao);
     this.anoModelo = Number(this.anoModelo);
     this.seguro = Number(this.seguro) || 0;
     this.multas = Number(this.multas) || 0;
     this.custosPercentual = Number(this.custosPercentual);
-
-    if (!this.fipe || !this.anoFabricacao || !this.anoModelo) {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return;
-    }
 
     let taxaSeguradora = 0;
 
@@ -74,5 +75,13 @@ export class CalculadoraComponent {
 
     this.resultado = true;
     this.resultadoService.atualizarResultado({ lote: this.lote, minimo: this.valorArremateMin, maximo: this.valorArremateMax });
+  }
+
+  private snackbar(mensagem: string) {
+    this.snackBar.open(mensagem, 'Fechar', {
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
 }

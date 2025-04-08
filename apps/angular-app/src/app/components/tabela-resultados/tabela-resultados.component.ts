@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ResultadoService } from '../../services/resultado.service';
 import { FormatRealPipe } from '../../pipes/format-real.pipe';
+import { Resultado } from '../../interfaces/resultado';
 
 @Component({
   selector: 'app-tabela-resultados',
@@ -10,17 +11,25 @@ import { FormatRealPipe } from '../../pipes/format-real.pipe';
   styleUrl: './tabela-resultados.component.scss'
 })
 export class TabelaResultadosComponent {
-  resultados: { lote: string, minimo: number; maximo: number }[] = [];
+  resultados: Resultado[] = [];
 
   constructor(private resultadoService: ResultadoService) { }
 
   ngOnInit() {
+    this.resultados = this.resultadoService.obterTodosResultados();
+
     this.resultadoService.resultadoAtual.subscribe(dados => {
       if (dados) this.resultados.push(dados);
     });
   }
 
   removerResultado(index: number) {
+    this.resultadoService.removerResultado(index);
     this.resultados.splice(index, 1);
+  }
+
+  limparTodos() {
+    this.resultadoService.limparTodos();
+    this.resultados = [];
   }
 }

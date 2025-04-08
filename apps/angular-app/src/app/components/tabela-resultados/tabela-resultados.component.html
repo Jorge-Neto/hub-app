@@ -20,6 +20,9 @@
       </tr>
     </tbody>
   </table>
+  <button *ngIf="resultados.length > 1" class="btn btn-outline-danger btn-sm mx-auto" (click)="limparTodos()">
+    Limpar
+    todos</button>
 
   <ng-template #noData>
     <p class="text-muted text-center mt-3">Nenhum resultado disponível.</p>
