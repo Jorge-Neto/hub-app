@@ -28,6 +28,9 @@
           <div class="invalid-feedback" *ngIf="form.get('anoFabricacao')?.hasError('min')">
             Valor mínimo permitido: 1900
           </div>
+          <div class="invalid-feedback" *ngIf="form.get('anoFabricacao')?.hasError('max')">
+            Valor máximo permitido: 2049
+          </div>
         </div>
 
         <div class="col">
@@ -36,6 +39,12 @@
             [ngClass]="{'is-invalid': form.get('anoModelo')?.invalid && form.get('anoModelo')?.touched}">
           <div class="invalid-feedback" *ngIf="form.get('anoModelo')?.hasError('required')">
             Ano do modelo é obrigatório
+          </div>
+          <div class="invalid-feedback" *ngIf="form.get('anoModelo')?.hasError('min')">
+            Valor mínimo permitido: 1901
+          </div>
+          <div class="invalid-feedback" *ngIf="form.get('anoModelo')?.hasError('max')">
+            Valor máximo permitido: 2050
           </div>
         </div>
       </div>
