@@ -67,6 +67,9 @@
           <div class="invalid-feedback" *ngIf="form.get('lote')?.hasError('required')">
             Adicione alguma informação
           </div>
+          <div class="invalid-feedback" *ngIf="form.get('lote')?.hasError('pattern')">
+            O valor informado é inválido
+          </div>
         </div>
       </div>
 
@@ -92,7 +95,8 @@
       <div class="row">
         <div class="col">
           <label for="fipe" class="form-label mt-2">Valor FIPE (R$):</label>
-          <input type="text" formControlName="fipe" class="form-control" placeholder="Ex: 13.608,00"
+          <input type="text" formControlName="fipe" class="form-control" placeholder="Ex: 13.608,00" mask="separator.2"
+            thousandSeparator="." decimalMarker=","
             [ngClass]="{'is-invalid': form.get('fipe')?.invalid && form.get('fipe')?.touched}">
           <div class="invalid-feedback" *ngIf="form.get('fipe')?.hasError('required')">
             Valor FIPE é obrigatório.
@@ -103,12 +107,14 @@
       <div class="row">
         <div class="col">
           <label for="seguro" class="form-label mt-2">Valor do Seguro (R$) - Opcional:</label>
-          <input type="text" formControlName="seguro" class="form-control" placeholder="Ex: 2.000,00">
+          <input type="text" formControlName="seguro" class="form-control" placeholder="Ex: 2.000,00" mask="separator.2"
+            thousandSeparator="." decimalMarker=",">
         </div>
 
         <div class="col">
           <label for="multas" class="form-label mt-2">Débitos/Multas Estimadas (R$) - Até 500,00:</label>
-          <input type="text" formControlName="multas" class="form-control" placeholder="Ex: 300,00">
+          <input type="text" formControlName="multas" class="form-control" placeholder="Ex: 300,00" mask="separator.2"
+            thousandSeparator="." decimalMarker=",">
         </div>
       </div>
 
