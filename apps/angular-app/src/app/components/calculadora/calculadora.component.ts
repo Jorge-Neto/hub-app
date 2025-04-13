@@ -62,7 +62,7 @@ export class CalculadoraComponent {
       taxaSeguradora = 80;
     }
 
-    const fipeValor = this.formatNumber.format(fipe);
+    const fipeValor = fipe;
 
     const descontoMax = sinistro === "pequena" ? 0.4 : 0.6;
     const descontoMin = sinistro === "pequena" ? 0.2 : 0.4;
@@ -86,6 +86,11 @@ export class CalculadoraComponent {
 
     this.valorArremateMin = (precoRevendaMin - custos - despesasFixas) / (1 + taxaLeilao);
     this.valorArremateMax = (precoRevendaMax - custos - despesasFixas) / (1 + taxaLeilao);
+
+    if (this.valorArremateMin < 1 || this.valorArremateMax < 1) {
+      this.snackbar('Os valores de arremate ficaram inconsistentes');
+      return; // Interrompe a execução da função
+    }
 
     this.resultadoService.atualizarResultado({ lote: lote, minimo: this.valorArremateMin, maximo: this.valorArremateMax });
     this.resultado = true;

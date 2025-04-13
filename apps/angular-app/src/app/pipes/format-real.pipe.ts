@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FormatRealPipe implements PipeTransform {
   transform(valor: number): string {
-    return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    return valor.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }).replace(/\u00A0/g, ' ');
   }
-
 }

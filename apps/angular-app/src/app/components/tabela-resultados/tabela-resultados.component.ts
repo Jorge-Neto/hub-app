@@ -19,7 +19,9 @@ export class TabelaResultadosComponent {
     this.resultados = this.resultadoService.obterTodosResultados();
 
     this.resultadoService.resultadoAtual.subscribe(dados => {
-      if (dados) this.resultados.push(dados);
+      if (dados && !this.resultados.some(r => r.lote === dados.lote && r.minimo === dados.minimo && r.maximo === dados.maximo)) {
+        this.resultados.push(dados);
+      }
     });
   }
 

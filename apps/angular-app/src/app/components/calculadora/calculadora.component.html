@@ -123,8 +123,10 @@
       <div class="resultado mt-3" *ngIf="resultado">
         <h3>Faixa ideal de arremate para lote {{ form.value.lote }}:</h3>
         <ul class="list-group list-group-horizontal">
-          <li class="list-group-item w-100">Mínimo: <strong>{{ valorArremateMin | formatReal }}</strong></li>
-          <li class="list-group-item w-100">Máximo: <strong>{{ valorArremateMax | formatReal }}</strong></li>
+          <li class="list-group-item w-100" [ngClass]="{'text-danger': valorArremateMin < 1}">Mínimo: <strong>{{
+              valorArremateMin | formatReal }}</strong></li>
+          <li class="list-group-item w-100" [ngClass]="{'text-danger': valorArremateMax < 1}">Máximo: <strong>{{
+              valorArremateMax | formatReal }}</strong></li>
         </ul>
       </div>
     </div>

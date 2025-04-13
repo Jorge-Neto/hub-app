@@ -16,6 +16,11 @@ export class ResultadoService {
   constructor(private snackBar: MatSnackBar) { }
 
   atualizarResultado(novoResultado: Resultado) {
+    if (this.jaExisteResultado(novoResultado)) {
+      this.snackbar('Esse resultado já foi adicionado!');
+      return;
+    }
+
     this.resultados.push(novoResultado);
     this.salvarResultados();
     this.resultadoSource.next(novoResultado);
@@ -36,6 +41,14 @@ export class ResultadoService {
     this.resultados = [];
     localStorage.removeItem(this.resultadosKey);
     this.snackbar('Todos os resultados foram limpos!');
+  }
+
+  jaExisteResultado(resultado: Resultado): boolean {
+    return this.resultados.some(r =>
+      r.lote === resultado.lote &&
+      r.minimo === resultado.minimo &&
+      r.maximo === resultado.maximo
+    );
   }
 
   private salvarResultados() {
